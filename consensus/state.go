@@ -1296,6 +1296,7 @@ func (cs *State) defaultDoPrevote(height int64, round int32) {
 	// Validate proposal block, from consensus' perspective
 	err := cs.blockExec.ValidateBlock(cs.state, cs.ProposalBlock, cs.skipAppHashVerify)
 	if err != nil {
+		debug.PrintStack()
 		// ProposalBlock is invalid, prevote nil.
 		logger.Error("prevote step: consensus deems this block invalid; prevoting nil",
 			"err", err)
